@@ -1,6 +1,5 @@
-
 import 'package:my_loop_partner/core/crash_catcher/crash_catcher.dart';
-import 'package:my_loop_partner/core/logs/logs.dart';
+import 'package:my_loop_partner/core/utils/logs.dart';
 
 class DefaultCrashHandler implements CrashHandler {
   @override
