@@ -4,7 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 final _filter = kDebugMode ? DevelopmentFilter() : ProductionFilter();
-const _level = kDebugMode ? Level.all : Level.off;
+const _level = kDebugMode
+    ? Level.all
+    : kProfileMode
+        ? Level.info
+        : Level.off;
 
 final _logger = Logger(
   printer: PrettyPrinter(),
@@ -14,6 +18,16 @@ final _logger = Logger(
 
 final _loggerWithoutStack = Logger(
   printer: PrettyPrinter(methodCount: 0),
+  filter: _filter,
+  level: _level,
+);
+
+final _loggerSimple = Logger(
+  printer: PrettyPrinter(
+    methodCount: 0,
+    colors: false,
+    printEmojis: false,
+  ),
   filter: _filter,
   level: _level,
 );
@@ -44,7 +58,7 @@ abstract class Logs {
   }
 
   static json(Map<String, dynamic> json) {
-    _loggerWithoutStack.t(json);
+    _loggerSimple.d(json);
   }
 
   static String prettyJson(Map<String, dynamic> json) {
