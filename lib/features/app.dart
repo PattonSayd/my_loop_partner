@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_loop_partner/core/environment.dart';
+import 'package:my_loop_partner/core/locale.dart';
+import 'package:my_loop_partner/generated/l10n.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -18,6 +20,9 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      localizationsDelegates: S.delegate.localizationsDelegates,
+      supportedLocales: S.delegate.supportedLocales,
+      localeResolutionCallback: S.delegate.localeResolution,
       home: const Scaffold(
         body: Center(
           child: Text('data'),
